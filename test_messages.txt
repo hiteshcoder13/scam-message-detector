@@ -1,0 +1,69 @@
+Scam Message Detector - test messages
+=====================================
+Copy one message at a time into the app and press "Check message".
+"Model result" is what the current scam_model.joblib returns (scam probability in brackets).
+Thresholds: below 0.30 = Safe, 0.30 to 0.70 = Suspicious, 0.70 and above = Scam
+
+
+SAFE MESSAGES (expected: Safe)
+------------------------------
+1. Hey, can you send me the notes from today's lecture?
+   Model result: Safe (0.06)
+
+2. Mom, I'll be home late tonight, don't wait for dinner.
+   Model result: Safe (0.02)
+
+3. Meeting moved to 3 pm tomorrow, same room. Please confirm.
+   Model result: Safe (0.06)
+
+4. Hi, are we still meeting at 6 pm near the library today?
+   Model result: Safe (0.03)
+
+5. Your Amazon order #402-1187 has been shipped and will arrive on Friday.
+   Model result: Safe (0.23)
+
+6. Get 20% cashback on your next recharge. Offer valid till Sunday.
+   Model result: Safe (0.27)
+
+7. Big sale! Flat 50% off on all items this weekend only. Tap the link to see offers.
+   Model result: Safe (0.22)
+
+
+SCAM MESSAGES (expected: Scam)
+------------------------------
+8. WINNER!! You have won a free iPhone. Call 09061701461 now to claim your reward. Valid 12 hours only.
+   Model result: Scam (0.98)
+
+9. FREE entry! Text WIN to 80086 to claim your Rs 10,00,000 cash prize. T&C apply.
+   Model result: Scam (0.97)
+
+10. Congratulations! Your mobile number has won £1000 in our weekly lottery. Reply with your bank details to claim.
+    Model result: Scam (0.85)
+
+11. Congratulations! You have won Rs 25,00,000 in a lucky draw. Pay Rs 5,000 processing fee to claim your prize.
+    Model result: Scam (0.76)
+
+
+INDIAN-STYLE SCAMS (expected: Scam, but the model rates them lower)
+-------------------------------------------------------------------
+12. Dear customer, your SBI account will be suspended. Verify your PAN now at www.sbi-kyc-update.com
+    Model result: Suspicious (0.48)
+
+13. URGENT: Your bank account will be blocked today. Update KYC now and share the OTP sent to your phone.
+    Model result: Suspicious (0.36)
+
+14. Your parcel could not be delivered. Pay Rs 25 redelivery fee at http://bit.ly/parcel-fix
+    Model result: Suspicious (0.32)
+
+15. You have been selected for a work-from-home job. Earn Rs 5000 daily. Pay Rs 999 registration fee to start.
+    Model result: Safe (0.25)  <- missed scam
+
+
+GENUINE MESSAGE WRONGLY FLAGGED (expected: Safe)
+-----------------------------------------------
+16. Your OTP for login is 482913. Do not share it with anyone.
+    Model result: Suspicious (0.44)  <- false alarm
+
+
+Why some results are wrong: the training data (UCI SMS Spam Collection) is older
+English SMS with very few Indian KYC, delivery-fee or job scams.

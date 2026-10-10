@@ -20,14 +20,6 @@ warning_words = {
 
 MODEL_NAMES = {"naive_bayes": "Naive Bayes", "logistic": "Logistic Regression", "forest": "Random Forest"}
 
-EXAMPLES = {
-    "Friendly message": "Hi, are we still meeting at 6 pm near the library today?",
-    "Shopping offer": "Big sale! Flat 50% off on all items this weekend only. Tap the link to see offers.",
-    "Bank / KYC threat": "URGENT: Your bank account will be blocked today. Update KYC now and share the OTP sent to your phone.",
-    "Lottery prize": "Congratulations! You have won Rs 25,00,000 in a lucky draw. Pay Rs 5,000 processing fee to claim your prize.",
-}
-
-
 # Must match clean_text() in the notebook exactly – the model was trained on this output
 def clean_text(text):
     text = text.lower()                                          # 1. lowercase
@@ -74,16 +66,7 @@ st.write(
 
 model = load_model()
 
-if "message" not in st.session_state:
-    st.session_state.message = ""
-
-st.caption("Try an example:")
-cols = st.columns(len(EXAMPLES))
-for col, (label, text) in zip(cols, EXAMPLES.items()):
-    if col.button(label, use_container_width=True):
-        st.session_state.message = text
-
-message = st.text_area("Message", key="message", height=140,
+message = st.text_area("Message", height=140,
                        placeholder="e.g. Your account is blocked. Share the OTP to unblock it.")
 
 if st.button("Check message", type="primary", disabled=not message.strip()):

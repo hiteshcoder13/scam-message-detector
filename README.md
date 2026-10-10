@@ -19,6 +19,7 @@ B.Tech CSE AI mini project, SGT University. Team: Babita (261302060), Yashasvi (
 | `Scam_Message_Detector_Training (2).ipynb` | Training notebook |
 | `requirements.txt` | Packages for the app (used by Streamlit Community Cloud) |
 | `requirements-train.txt` | Extra packages for running the notebook |
+| `test_messages.txt` | Sample messages to try in the app, with expected results |
 
 ## Run locally
 ```bash
