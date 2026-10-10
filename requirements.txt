@@ -1,0 +1,5 @@
+# scikit-learn must match the version used to train scam_model.joblib
+scikit-learn==1.9.1
+joblib==1.6.0
+numpy==2.5.3
+streamlit==1.65.0
